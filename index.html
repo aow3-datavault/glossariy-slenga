@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Игровой сленг Art of War 3</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d28;
+    --surface-alt: #222639;
+    --border: #2a2f45;
+    --text: #e4e6f0;
+    --text-dim: #8b8fa8;
+    --accent: #6c8cff;
+    --accent-glow: rgba(108,140,255,0.15);
+    --green: #4ade80;
+    --gold: #fbbf24;
+    --red: #f87171;
+    --radius: 12px;
+  }
+
+  html { font-size: 17px; scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container { max-width: 780px; margin: 0 auto; padding: 0 24px; }
+
+  header {
+    text-align: center;
+    padding: 64px 0 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  header .icon { font-size: 3rem; margin-bottom: 16px; display: block; }
+  header h1 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+  }
+
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    margin: 0 0 48px;
+  }
+
+  section { margin-bottom: 40px; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--border);
+  }
+  .section-header .emoji { font-size: 1.3rem; }
+  .section-header h2 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+  }
+  .section-header .count {
+    margin-left: auto;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    background: var(--surface-alt);
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-weight: 500;
+  }
+
+  .entry {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    padding: 6px 12px;
+    border-radius: 8px;
+    transition: background 0.15s;
+  }
+  .entry:hover { background: var(--surface-alt); }
+
+  .entry .term {
+    font-weight: 600;
+    color: #fff;
+    white-space: nowrap;
+  }
+  .entry .sep { color: var(--text-dim); font-weight: 300; }
+  .entry .def { color: var(--text); }
+
+  footer {
+    text-align: center;
+    padding: 48px 0 64px;
+    color: var(--text-dim);
+    font-size: 0.85rem;
+  }
+  footer a { color: var(--accent); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  .toc {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px 28px;
+    margin-bottom: 48px;
+  }
+  .toc-title {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+  }
+  .toc-list { list-style: none; display: flex; flex-wrap: wrap; gap: 4px 16px; }
+  .toc-list li { font-size: 0.85rem; }
+  .toc-list a {
+    color: var(--accent);
+    text-decoration: none;
+    padding: 2px 0;
+  }
+  .toc-list a:hover { text-decoration: underline; }
+
+  @media (max-width: 600px) {
+    html { font-size: 15px; }
+    header h1 { font-size: 1.6rem; }
+    header { padding: 40px 0 32px; }
+    .entry { flex-wrap: wrap; gap: 2px 8px; padding: 5px 8px; }
+    .entry .term { white-space: normal; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<header>
+  <span class="icon">📖</span>
+  <h1>Игровой сленг Art of War 3</h1>
+</header>
+
+<div class="divider"></div>
+
+<nav class="toc">
+  <div class="toc-title">Содержание</div>
+  <ul class="toc-list">
+    <li><a href="#general">🎮 Общие термины</a></li>
+    <li><a href="#units">🏃 Юниты</a></li>
+    <li><a href="#tiers">🗺 Тир юнитов</a></li>
+    <li><a href="#heroes">🦁 Герои</a></li>
+    <li><a href="#buildings">🏭 Здания</a></li>
+    <li><a href="#combos">🤝 Связки юнитов</a></li>
+    <li><a href="#air">✈️ Авианалеты</a></li>
+    <li><a href="#players">👥 Классификация</a></li>
+    <li><a href="#battle">💳 Механики боя</a></li>
+    <li><a href="#params">📊 Параметры</a></li>
+    <li><a href="#modes">🎮 Режимы</a></li>
+    <li><a href="#economy">💰 Экономика</a></li>
+    <li><a href="#balance">⚙️ Баланс</a></li>
+    <li><a href="#status">🚫 Статус</a></li>
+    <li><a href="#kb">📋 База знаний</a></li>
+  </ul>
+</nav>
+
+<section id="general">
+  <div class="section-header">
+    <span class="emoji">🎮</span>
+    <h2>Общие термины</h2>
+    <span class="count">14</span>
+  </div>
+  <div class="entry"><span class="term">Арта</span><span class="sep">—</span><span class="def">Игра Art of War</span></div>
+  <div class="entry"><span class="term">Разраб</span><span class="sep">—</span><span class="def">Разработчик игры</span></div>
+  <div class="entry"><span class="term">Конфа</span><span class="sep">—</span><span class="def">Конфедерация</span></div>
+  <div class="entry"><span class="term">Сопра</span><span class="sep">—</span><span class="def">Сопротивление</span></div>
+  <div class="entry"><span class="term">Раш</span><span class="sep">—</span><span class="def">Быстрая атака в самом начале игры</span></div>
+  <div class="entry"><span class="term">Спам</span><span class="sep">—</span><span class="def">Непрерывное, массовое производство войск</span></div>
+  <div class="entry"><span class="term">Мясо</span><span class="sep">—</span><span class="def">Использование при атаке огромного количества юнитов 1-го уровня</span></div>
+  <div class="entry"><span class="term">Ферма</span><span class="sep">—</span><span class="def">Развитие базы через мощную оборону с выходом в ВВС 3-го уровня или Супер-оружие</span></div>
+  <div class="entry"><span class="term">Деф-атака / Раш зданиями</span><span class="sep">—</span><span class="def">Строительство оборонительных сооружений прямо у базы противника в начале боя</span></div>
+  <div class="entry"><span class="term">Прорыв Тасса</span><span class="sep">—</span><span class="def">Обходной маневр по флангу в тыл врага мобильными войсками, минуя его оборону</span></div>
+  <div class="entry"><span class="term">Акк</span><span class="sep">—</span><span class="def">Игровой аккаунт</span></div>
+  <div class="entry"><span class="term">Ава</span><span class="sep">—</span><span class="def">Аватарка игрока</span></div>
+  <div class="entry"><span class="term">Ник</span><span class="sep">—</span><span class="def">Псевдоним игрока</span></div>
+  <div class="entry"><span class="term">Винрейт</span><span class="sep">—</span><span class="def">Процент побед</span></div>
+</section>
+
+<section id="units">
+  <div class="section-header">
+    <span class="emoji">🏃</span>
+    <h2>Юниты</h2>
+    <span class="count">10</span>
+  </div>
+  <div class="entry"><span class="term">Грен / Тяж</span><span class="sep">—</span><span class="def">Тяжелый штурмовик</span></div>
+  <div class="entry"><span class="term">Крепа</span><span class="sep">—</span><span class="def">Крепость</span></div>
+  <div class="entry"><span class="term">Броник</span><span class="sep">—</span><span class="def">Броненосец</span></div>
+  <div class="entry"><span class="term">Яг</span><span class="sep">—</span><span class="def">Ягуар</span></div>
+  <div class="entry"><span class="term">Дикий</span><span class="sep">—</span><span class="def">Дикобраз</span></div>
+  <div class="entry"><span class="term">Хам</span><span class="sep">—</span><span class="def">Хамелеон</span></div>
+  <div class="entry"><span class="term">Алик</span><span class="sep">—</span><span class="def">Аллигатор</span></div>
+  <div class="entry"><span class="term">Посик</span><span class="sep">—</span><span class="def">Посейдон</span></div>
+  <div class="entry"><span class="term">Барра</span><span class="sep">—</span><span class="def">Барракуда</span></div>
+  <div class="entry"><span class="term">Утюг</span><span class="sep">—</span><span class="def">Викинг</span></div>
+</section>
+
+<section id="tiers">
+  <div class="section-header">
+    <span class="emoji">🗺</span>
+    <h2>Тир юнитов</h2>
+    <span class="count">3</span>
+  </div>
+  <div class="entry"><span class="term">Т1</span><span class="sep">—</span><span class="def">Юнит 1-го уровня</span></div>
+  <div class="entry"><span class="term">Т2</span><span class="sep">—</span><span class="def">Юнит 2-го уровня</span></div>
+  <div class="entry"><span class="term">Т3</span><span class="sep">—</span><span class="def">Юнит 3-го уровня</span></div>
+</section>
+
+<section id="heroes">
+  <div class="section-header">
+    <span class="emoji">🦁</span>
+    <h2>Герои</h2>
+    <span class="count">5</span>
+  </div>
+  <div class="entry"><span class="term">Роса</span><span class="sep">—</span><span class="def">Росомаха</span></div>
+  <div class="entry"><span class="term">Лёвик / Лёва / Корова</span><span class="sep">—</span><span class="def">Левиафан</span></div>
+  <div class="entry"><span class="term">Серый</span><span class="sep">—</span><span class="def">Серафим</span></div>
+  <div class="entry"><span class="term">Сало</span><span class="sep">—</span><span class="def">Саламандра</span></div>
+  <div class="entry"><span class="term">Соль</span><span class="sep">—</span><span class="def">Солярис</span></div>
+</section>
+
+<section id="buildings">
+  <div class="section-header">
+    <span class="emoji">🏭</span>
+    <h2>Здания</h2>
+    <span class="count">15</span>
+  </div>
+  <div class="entry"><span class="term">СД</span><span class="sep">—</span><span class="def">Строительный двор</span></div>
+  <div class="entry"><span class="term">ЭС / Элка</span><span class="sep">—</span><span class="def">Электростанция</span></div>
+  <div class="entry"><span class="term">ЦС</span><span class="sep">—</span><span class="def">Центр снабжения</span></div>
+  <div class="entry"><span class="term">ЗШМ</span><span class="sep">—</span><span class="def">Завод штурмовых машин</span></div>
+  <div class="entry"><span class="term">ЗСМ</span><span class="sep">—</span><span class="def">Завод специальных машин</span></div>
+  <div class="entry"><span class="term">Завод Героев</span><span class="sep">—</span><span class="def">Объект "Х" / Завод Прототипов</span></div>
+  <div class="entry"><span class="term">Луч</span><span class="sep">—</span><span class="def">Система наведения</span></div>
+  <div class="entry"><span class="term">Карандаш / Болванка / Ядро</span><span class="sep">—</span><span class="def">Ядерная ракета</span></div>
+  <div class="entry"><span class="term">Вышка</span><span class="sep">—</span><span class="def">Снайперская вышка</span></div>
+  <div class="entry"><span class="term">Ракетка / Рушка</span><span class="sep">—</span><span class="def">Ракетная установка</span></div>
+  <div class="entry"><span class="term">Пушка</span><span class="sep">—</span><span class="def">Стационарная пушка</span></div>
+  <div class="entry"><span class="term">Торпедка</span><span class="sep">—</span><span class="def">Торпедная платформа / Морская установка</span></div>
+  <div class="entry"><span class="term">База</span><span class="sep">—</span><span class="def">Локация расположения всех сооружений игрока</span></div>
+  <div class="entry"><span class="term">Административка</span><span class="sep">—</span><span class="def">Административные сооружения</span></div>
+  <div class="entry"><span class="term">Деф</span><span class="sep">—</span><span class="def">Оборонительные сооружения</span></div>
+</section>
+
+<section id="combos">
+  <div class="section-header">
+    <span class="emoji">🤝</span>
+    <h2>Популярные связки юнитов</h2>
+    <span class="count">5</span>
+  </div>
+  <div class="entry"><span class="term">Молотопех</span><span class="sep">—</span><span class="def">Легкий штурмовик + Молот</span></div>
+  <div class="entry"><span class="term">Крепогрен / Крепотяж</span><span class="sep">—</span><span class="def">Тяжелый штурмовик + Крепость</span></div>
+  <div class="entry"><span class="term">Ягохам</span><span class="sep">—</span><span class="def">Ягуар + Хамелеон</span></div>
+  <div class="entry"><span class="term">Зевсоград</span><span class="sep">—</span><span class="def">Зевс + Град</span></div>
+  <div class="entry"><span class="term">Зевсощит</span><span class="sep">—</span><span class="def">Зевс + Щит</span></div>
+</section>
+
+<section id="air">
+  <div class="section-header">
+    <span class="emoji">✈️</span>
+    <h2>Массовые авианалеты</h2>
+    <span class="count">2</span>
+  </div>
+  <div class="entry"><span class="term">Масс-Циклон</span><span class="sep">—</span><span class="def">Атака большим количеством Циклонов</span></div>
+  <div class="entry"><span class="term">Масс-Стрекоза</span><span class="sep">—</span><span class="def">Атака большим количеством Стрекоз</span></div>
+</section>
+
+<section id="players">
+  <div class="section-header">
+    <span class="emoji">👥</span>
+    <h2>Классификация игроков</h2>
+    <span class="count">9</span>
+  </div>
+  <div class="entry"><span class="term">Перекач / Жир</span><span class="sep">—</span><span class="def">Игрок с очень сильно исследованными характеристиками юнитов</span></div>
+  <div class="entry"><span class="term">Недокач</span><span class="sep">—</span><span class="def">Игрок с низким уровнем исследований характеристик войск</span></div>
+  <div class="entry"><span class="term">Скилл</span><span class="sep">—</span><span class="def">Опытный, грамотный игрок, который отлично "чувствует" игру</span></div>
+  <div class="entry"><span class="term">Спамер</span><span class="sep">—</span><span class="def">Тот, кто долгое время штампует и отправляет в бой одни и те же типы юнитов</span></div>
+  <div class="entry"><span class="term">Сливщик</span><span class="sep">—</span><span class="def">Игрок, который намеренно проигрывает бои ради снижения своего винрейта</span></div>
+  <div class="entry"><span class="term">Соло</span><span class="sep">—</span><span class="def">Тот, кто в одиночку тащит бой против нескольких соперников</span></div>
+  <div class="entry"><span class="term">Донатер</span><span class="sep">—</span><span class="def">Игрок, вкладывающий реальные деньги для быстрой прокачки характеристик</span></div>
+  <div class="entry"><span class="term">Медалист</span><span class="sep">—</span><span class="def">Тот, кто регулярно занимает призовые места в Турнирах</span></div>
+  <div class="entry"><span class="term">Ютубер</span><span class="sep">—</span><span class="def">Игрок, который записывает свои сражения и выкладывает их в соцсети</span></div>
+</section>
+
+<section id="battle">
+  <div class="section-header">
+    <span class="emoji">💳</span>
+    <h2>Механики боя</h2>
+    <span class="count">16</span>
+  </div>
+  <div class="entry"><span class="term">Буст</span><span class="sep">—</span><span class="def">Карточка, дающая временные преимущества в бою</span></div>
+  <div class="entry"><span class="term">Голдить</span><span class="sep">—</span><span class="def">Активно использовать Золотые карточки во время сражения</span></div>
+  <div class="entry"><span class="term">Контрить</span><span class="sep">—</span><span class="def">Создавать условия и подбирать войска для успешного противостояния конкретным юнитам врага</span></div>
+  <div class="entry"><span class="term">Фулл КО</span><span class="sep">—</span><span class="def">Набор максимальной численности войск, которую позволяет текущий уровень Штаба</span></div>
+  <div class="entry"><span class="term">Туман</span><span class="sep">—</span><span class="def">Дымовая завеса от Хамелеона</span></div>
+  <div class="entry"><span class="term">Тархун</span><span class="sep">—</span><span class="def">Активная способность Осы "Кислотный взрыв"</span></div>
+  <div class="entry"><span class="term">Тап / Клик</span><span class="sep">—</span><span class="def">Нажатие на экран</span></div>
+  <div class="entry"><span class="term">Мансовать / Мансить</span><span class="sep">—</span><span class="def">Маневрирование для обмана соперника или уклонения от критических ударов</span></div>
+  <div class="entry"><span class="term">Юзать</span><span class="sep">—</span><span class="def">Использовать</span></div>
+  <div class="entry"><span class="term">Рес / Ресать / Реснуть</span><span class="sep">—</span><span class="def">Удалить</span></div>
+  <div class="entry"><span class="term">Активка / Ульта</span><span class="sep">—</span><span class="def">Активная способность Героя, активируемая игроком</span></div>
+  <div class="entry"><span class="term">Пассивка</span><span class="sep">—</span><span class="def">Пассивная способность Героя, активируемая сама по себе</span></div>
+  <div class="entry"><span class="term">Дамаг</span><span class="sep">—</span><span class="def">Урон по юниту</span></div>
+  <div class="entry"><span class="term">Ваншот</span><span class="sep">—</span><span class="def">Уничтожение юнита с одного удара</span></div>
+  <div class="entry"><span class="term">Имба</span><span class="sep">—</span><span class="def">Юнит, имеющий значительное доминирование на поле боя</span></div>
+  <div class="entry"><span class="term">Фича</span><span class="sep">—</span><span class="def">Полезная функция или характеристика юнита</span></div>
+</section>
+
+<section id="params">
+  <div class="section-header">
+    <span class="emoji">📊</span>
+    <h2>Игровые параметры и очки</h2>
+    <span class="count">4</span>
+  </div>
+  <div class="entry"><span class="term">ХП</span><span class="sep">—</span><span class="def">Запас прочности</span></div>
+  <div class="entry"><span class="term">ОВ</span><span class="sep">—</span><span class="def">Очки войны</span></div>
+  <div class="entry"><span class="term">ТО</span><span class="sep">—</span><span class="def">Турнирные очки</span></div>
+  <div class="entry"><span class="term">КО</span><span class="sep">—</span><span class="def">Командные очки</span></div>
+</section>
+
+<section id="modes">
+  <div class="section-header">
+    <span class="emoji">🎮</span>
+    <h2>Режимы игры и форматы боев</h2>
+    <span class="count">7</span>
+  </div>
+  <div class="entry"><span class="term">Катка</span><span class="sep">—</span><span class="def">Один бой</span></div>
+  <div class="entry"><span class="term">Слив</span><span class="sep">—</span><span class="def">Проигрыш боя</span></div>
+  <div class="entry"><span class="term">ГГ</span><span class="sep">—</span><span class="def">Хорошая игра (Good Game)</span></div>
+  <div class="entry"><span class="term">PvP</span><span class="sep">—</span><span class="def">Бой против реального игрока</span></div>
+  <div class="entry"><span class="term">PvE (Скирмиш)</span><span class="sep">—</span><span class="def">Бой против Искусственного Интеллекта (ИИ)</span></div>
+  <div class="entry"><span class="term">FFA</span><span class="sep">—</span><span class="def">Режим боя "Каждый сам за себя"</span></div>
+  <div class="entry"><span class="term">FFA3 / FFA4</span><span class="sep">—</span><span class="def">Режим "Каждый сам за себя" на 3 или 4 игрока</span></div>
+</section>
+
+<section id="economy">
+  <div class="section-header">
+    <span class="emoji">💰</span>
+    <h2>Экономика и ресурсы</h2>
+    <span class="count">6</span>
+  </div>
+  <div class="entry"><span class="term">Зелень</span><span class="sep">—</span><span class="def">Кредиты (обычная игровая валюта)</span></div>
+  <div class="entry"><span class="term">Голда</span><span class="sep">—</span><span class="def">Золотые кредиты (премиум-валюта)</span></div>
+  <div class="entry"><span class="term">Донат</span><span class="sep">—</span><span class="def">Финансовая трата реальных денежных средств в игру</span></div>
+  <div class="entry"><span class="term">Прокачка</span><span class="sep">—</span><span class="def">Повышение характеристик юнитов в Мастерской</span></div>
+  <div class="entry"><span class="term">Сток</span><span class="sep">—</span><span class="def">Характеристики юнита почти не исследованы</span></div>
+  <div class="entry"><span class="term">Прокачка под ранг</span><span class="sep">—</span><span class="def">Характеристики юнита исследованы полностью под свой ранг</span></div>
+</section>
+
+<section id="balance">
+  <div class="section-header">
+    <span class="emoji">⚙️</span>
+    <h2>Баланс и техническая часть</h2>
+    <span class="count">7</span>
+  </div>
+  <div class="entry"><span class="term">Прокачка</span><span class="sep">—</span><span class="def">Процесс улучшения характеристик юнита вследствие их исследования</span></div>
+  <div class="entry"><span class="term">Бафф</span><span class="sep">—</span><span class="def">Улучшение характеристик юнита разработчиками</span></div>
+  <div class="entry"><span class="term">Нерф</span><span class="sep">—</span><span class="def">Снижение характеристик юнита разработчиками</span></div>
+  <div class="entry"><span class="term">Патч</span><span class="sep">—</span><span class="def">Обновление игры</span></div>
+  <div class="entry"><span class="term">Баг</span><span class="sep">—</span><span class="def">Ошибка, обнаруженная в игре</span></div>
+  <div class="entry"><span class="term">Лаг</span><span class="sep">—</span><span class="def">Задержка в работе игры</span></div>
+  <div class="entry"><span class="term">Пинг</span><span class="sep">—</span><span class="def">Время отклика сервера</span></div>
+</section>
+
+<section id="status">
+  <div class="section-header">
+    <span class="emoji">🚫</span>
+    <h2>Игровой статус и наказания</h2>
+    <span class="count">3</span>
+  </div>
+  <div class="entry"><span class="term">АФК</span><span class="sep">—</span><span class="def">Временная недееспособность игрока во время боя</span></div>
+  <div class="entry"><span class="term">Бан</span><span class="sep">—</span><span class="def">Наказание на определенный промежуток времени</span></div>
+  <div class="entry"><span class="term">Пермач</span><span class="sep">—</span><span class="def">Наказание без срока завершения (вечный бан)</span></div>
+</section>
+
+<section id="kb">
+  <div class="section-header">
+    <span class="emoji">📋</span>
+    <h2>База знаний</h2>
+    <span class="count">2</span>
+  </div>
+  <div class="entry"><span class="term">Гайд</span><span class="sep">—</span><span class="def">Руководство по игре</span></div>
+  <div class="entry"><span class="term">Скрин</span><span class="sep">—</span><span class="def">Снимок экрана (скриншот)</span></div>
+</section>
+
+<footer>
+  <p><a href="https://github.com/aow3-datavault">aow3-datavault</a> &middot; Art of War 3 Community Project</p>
+</footer>
+
+</div>
+</body>
+</html>
